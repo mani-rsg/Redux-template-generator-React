@@ -1,0 +1,37 @@
+{
+  "name": "redux-template-generator-react",
+  "version": "1.0.0",
+  "description": "A Redux template generator for React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "react": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mani-rsg/Redux-template-generator-React.git"
+  },
+  "keywords": [
+    "redux",
+    "react",
+    "template-generator",
+    "component-generator",
+    "generator",
+    "react-redux",
+    "redus-generator",
+    "nodejs",
+    "cli"
+  ],
+  "author": "Manigandan Ravi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mani-rsg/Redux-template-generator-React/issues"
+  },
+  "homepage": "https://github.com/mani-rsg/Redux-template-generator-React#readme",
+  "dependencies": {
+    "yargs": "^17.0.1",
+    "yargs-interactive": "^3.0.0"
+  }
+}
