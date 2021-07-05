@@ -1,7 +1,6 @@
 #! /usr/bin/env node
 const yargs = require("yargs")
 const { promptQn1 } = require('./prompts/prompts');
-// import { promptQn1 } from './prompts/prompts.js';
 // yargs.version("2.0.2");
 
 yargs.command({
@@ -19,7 +18,7 @@ yargs.command({
             type: "boolean"
         }
     },
-    handler: argv => promptQn1(argv)
+    handler: promptQn1
 })
 
 yargs.parse();

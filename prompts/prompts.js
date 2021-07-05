@@ -1,26 +1,36 @@
 #! /usr/bin/env node
 const prompts = require("yargs-interactive")();
 
-const generateComponent = (argv, answer) => {
-    console.log(answer, argv);
+const createReactApp = require("../generators/createReact");
+const createTypescriptTemplate = require("../generators/reactTypescript");
+const createReduxTemplate = require("../generators/reactWithRedux");
+
+// const generateComponent = (answer) => {
+//     console.log(answer);
+// }
+
+const generateTemplate = {
+    "React app": createReactApp,
+    "React with Redux": createReduxTemplate,
+    "React Redux with Typescript": createTypescriptTemplate
 }
-const promptQn1 = async argv => {
+const promptQn1 = async () => {
     let options = {
         interactive: { default: true },
         template: {
             type: "list",
             describe: "Choose any of the templates below",
-            choices: ["React app", "React with Redux", "React Redux with Type Script"]
+            choices: ["React app", "React with Redux", "React Redux with Typescript"]
         }
     }
     try {
         answer = await prompts.interactive(options);
-        generateComponent(argv, answer);
+        // generateComponent(answer);
+        generateTemplate[answer.template](answer);
     }
     catch (error) {
         console.error(error, 'unable to prompt');
     }
 }
 
-// export { promptQn1 }
-module.exports = {promptQn1};
+module.exports = { promptQn1 };
