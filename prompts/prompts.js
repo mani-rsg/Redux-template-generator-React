@@ -1,6 +1,5 @@
 #! /usr/bin/env node
-
-const prompts = require('yargs-interactive')();
+const prompts = require("yargs-interactive")();
 
 const generateComponent = (argv, answer) => {
     console.log(answer, argv);
@@ -8,7 +7,7 @@ const generateComponent = (argv, answer) => {
 const promptQn1 = async argv => {
     let options = {
         interactive: { default: true },
-        qn1: {
+        template: {
             type: "list",
             describe: "Choose any of the templates below",
             choices: ["React app", "React with Redux", "React Redux with Type Script"]
@@ -23,4 +22,5 @@ const promptQn1 = async argv => {
     }
 }
 
-module.exports = { promptQn1 };
+// export { promptQn1 }
+module.exports = {promptQn1};

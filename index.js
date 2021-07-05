@@ -1,9 +1,10 @@
-const yargs = require('yargs')
-// import { promptQn1 } from './prompts/prompts';
+#! /usr/bin/env node
+const yargs = require("yargs")
+const { promptQn1 } = require('./prompts/prompts');
+// import { promptQn1 } from './prompts/prompts.js';
+// yargs.version("2.0.2");
 
-yargs.version("2.0.2");
-
-yargs({
+yargs.command({
     command: "gt",
     describe: "Generate react template",
     builder: {
@@ -18,7 +19,7 @@ yargs({
             type: "boolean"
         }
     },
-    handler: argv => { console.log(argv) }
+    handler: argv => promptQn1(argv)
 })
 
 yargs.parse();
