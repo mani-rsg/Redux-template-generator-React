@@ -1,6 +1,8 @@
 const INDEX_JS = `import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
+import './index.css';
+import App from './App';
 import store from './store';
 
 ReactDOM.render(
@@ -28,7 +30,7 @@ const ACTION_JS = `export const action = (dispatch)=>{
 }`;
 
 const REDUCER_JS = `export const reducer = (state = {}, action) => {
-    
+
     switch (action.type) {
         case "<type_1>":
             return {...state,}

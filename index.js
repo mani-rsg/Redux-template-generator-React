@@ -1,19 +1,12 @@
 #! /usr/bin/env node
-const yargs = require("yargs")
+const { program } = require('commander')
 const { promptQn1 } = require('./prompts/prompts');
-// yargs.version("2.0.2");
 
-yargs.command({
-    command: "gt",
-    describe: "Generate react template",
-    builder: {
-        p: {
-            describe: "Path where the template should to be created",
-            demandOption: false,
-            type: "string"
-        }
-    },
-    handler: promptQn1
-})
+program
+    .command('create')
+    .description('Generate react template')
+    .requiredOption('-n, --name <appName>', 'React app name')
+    .option('-p, --path <path>', 'Path at which the template need to be created. By default templates will be created in src folder')
+    .action(promptQn1)
 
-yargs.parse();
+program.parse();

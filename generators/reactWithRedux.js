@@ -32,6 +32,11 @@ const createTemplate = (path, filesArr) => {
 }
 const createReduxTemplate = answer => {
     console.log(answer, 'redux');
+    // exec(`npx create-react-app temp`, (err, stdOut, stdErr) => {
+    //     console.error(err, 'error');
+    //     console.log(stdOut, 'stdOut');
+    //     console.log(stdErr, 'stdErr');
+    // })
     /**
      * {
             _: [ 'gt' ],
@@ -41,6 +46,8 @@ const createReduxTemplate = answer => {
             template: 'React with Redux'
         }
      */
+
+    //todo: create react app before executing below
 
     let currentPath = process.cwd();
     answer.p = answer.p || 'src';
@@ -71,7 +78,7 @@ const createReduxTemplate = answer => {
         console.log("Created files successfully");
     }, error => {
         console.error(error, `unable to create React with Redux template`);
-    })
+    }) //!commented for now
 
 
 }
