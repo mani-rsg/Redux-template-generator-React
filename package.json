@@ -32,8 +32,6 @@
   "homepage": "https://github.com/mani-rsg/Redux-template-generator-React#readme",
   "dependencies": {
     "commander": "^8.0.0",
-    "inquirer": "^8.1.1",
-    "yargs": "^17.0.1",
-    "yargs-interactive": "^3.0.0"
+    "inquirer": "^8.1.1"
   }
 }
