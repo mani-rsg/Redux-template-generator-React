@@ -5,10 +5,6 @@ const createReactApp = require("../generators/createReact");
 const createTypescriptTemplate = require("../generators/reactTypescript");
 const createReduxTemplate = require("../generators/reactWithRedux");
 
-// const generateComponent = (answer) => {
-//     console.log(answer);
-// }
-
 const generateTemplate = {
     "React app": createReactApp,
     "React with Redux": createReduxTemplate,

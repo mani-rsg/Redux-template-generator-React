@@ -1,7 +1,35 @@
+const fs = require('fs');
+const fsPromises = require('fs/promises');
 const { exec } = require('child_process');
 const npath = require("path");
-const { INDEX_JS, STORE_JS, ACTION_JS, REDUCER_JS } = require('./templates/reduxTemplates');
+const { SRC_ARR, ACTION_ARR, REDUCER_ARR } = require('./templates/reduxTemplates');
 
+const createTemplate = (path, filesArr) => {
+    return new Promise((resolve, reject) => {
+        fs.mkdir(path, { recursive: true }, error => {
+            if (error) {
+                console.error(error, `unable to create ${path}`);
+                //todo: resolve / reject
+                return;
+            }
+            console.info(`${path} created`);
+
+            let writeArr = [];
+            filesArr.forEach(file => {
+                writeArr.push(fsPromises.writeFile(`${path}/${file.name}`, file.template).then(() => {
+                    console.info(`${file.name} created successfully`);
+                }, error => console.error(error, `Unable to create ${file.name}`)));
+            })
+
+            Promise.all(writeArr).then(() => {
+                resolve({ created: true });
+            }, error => {
+                console.error(error, `unable to create files in ${path}`);
+                //todo: resolve / reject
+            })
+        })
+    })
+}
 const createReduxTemplate = answer => {
     console.log(answer, 'redux');
     /**
@@ -14,38 +42,34 @@ const createReduxTemplate = answer => {
         }
      */
 
-    exec("pwd", async (err, stdOut, stdErr) => {
-        if (err) {
-            console.error("error", err);
-            return;
-        }
-        if (stdErr) {
-            console.error("stdErr", stdErr);
-            return;
-        }
-        // stdOut = stdOut.split("\\").slice(2).join("/");
-        // console.log(stdOut);
-        const homePath = npath.resolve(stdOut);
-        // console.log(homePath);
+    let currentPath = process.cwd();
+    console.log(currentPath);
 
-        console.log(homePath);
-        // console.log(stdOut);
+    const templateArr = [{
+        path: `${currentPath}/${answer.p}`,
+        filesArr: SRC_ARR
+    }, {
+        path: `${currentPath}/${answer.p}/actions`,
+        filesArr: ACTION_ARR
+    }, {
+        path: `${currentPath}/${answer.p}/reducers`,
+        filesArr: REDUCER_ARR
+    }]
 
-        // const pathCheck = await checkPath(homePath+"/src/"+argV.p);
+    let promiseArr = [];
 
-        // if(pathCheck){
-        //     genFile(homePath+"/src/"+argV.p+".jsx", fc, name, argV);
-        // }
-        // else{
-        //     try{
-        //         await generateDir(homePath+"/src/"+argV.p+".jsx");
-        //         genFile(homePath+"/src/"+argV.p+".jsx", fc, name, argV);
-        //     }
-        //     catch(err){
-        //         console.error("error in the else block", err);
-        //     }
-        // }
+    templateArr.forEach(template => {
+        promiseArr.push(createTemplate(template.path, template.filesArr).then(() => {
+            console.log(`${template.path} template created successfully`);
+        }, error => {
+            console.error(error, `Unable to create template ${template.path}`);
+        }))
+    })
 
+    Promise.all(promiseArr).then(() => {
+        console.log("Created files successfully");
+    }, error => {
+        console.error(error, `unable to create React with Redux template`);
     })
 
 

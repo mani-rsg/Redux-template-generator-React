@@ -12,9 +12,11 @@ ReactDOM.render(
 
 
 const STORE_JS = `import {createStore} from 'redux';
-import {reducerFn:reducer} from './reducers/reducer.js'
+import {reducerFn as reducer} from './reducers/reducer.js'
+
 const initialState={};
 const store = createStore(reducer, initialState);
+
 export default store;
 `;
 
@@ -26,14 +28,35 @@ const ACTION_JS = `export const action = (dispatch)=>{
 }`;
 
 const REDUCER_JS = `export const reducer = (state = {}, action) => {
+    
     switch (action.type) {
-        case <type_1>:
+        case "<type_1>":
             return {...state,}
-        case <type_2>:
+        case "<type_2>":
             return { ...state, }
         default:
             return state
     }
-}`
+}`;
 
-module.exports = { INDEX_JS, STORE_JS, ACTION_JS, REDUCER_JS };
+const SRC_ARR = [{
+    name: 'index.js',
+    template: INDEX_JS
+},
+{
+    name: 'store.js',
+    template: STORE_JS
+}];
+
+const ACTION_ARR=[{
+    name: 'action.js',
+    template: ACTION_JS
+}];
+
+const REDUCER_ARR = [{
+    name: 'reducer.js',
+    template: REDUCER_JS
+}];
+
+
+module.exports = { SRC_ARR, ACTION_ARR, REDUCER_ARR };
