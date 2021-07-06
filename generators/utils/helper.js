@@ -1,12 +1,7 @@
-const generateDir = (path) => {
+const { exec } = require('child_process');
 
-    // path = path.split("/");
-    // path.pop();
-    // path = path.join("/");
-    console.log("path in mkdir", path);
-    return new Promise((res, rej) => {
-        fs.mkdir(path, { recursive: true }, (err) => {
-            err ? rej(err) : res("success in creating the directory");
-        });
-    });
-}
+module.exports = {
+    run: (command, callback) => {
+        exec(command, callback);
+    }
+};

@@ -1,8 +1,7 @@
 const fs = require('fs');
 const fsPromises = require('fs/promises');
-const { exec } = require('child_process');
-const npath = require("path");
 const { SRC_ARR, ACTION_ARR, REDUCER_ARR } = require('./templates/reduxTemplates');
+const { run } = require('./utils/helper');
 
 const createTemplate = (path, filesArr) => {
     return new Promise((resolve, reject) => {
@@ -30,37 +29,19 @@ const createTemplate = (path, filesArr) => {
         })
     })
 }
-const createReduxTemplate = answer => {
-    console.log(answer, 'redux');
-    // exec(`npx create-react-app temp`, (err, stdOut, stdErr) => {
-    //     console.error(err, 'error');
-    //     console.log(stdOut, 'stdOut');
-    //     console.log(stdErr, 'stdErr');
-    // })
-    /**
-     * {
-            _: [ 'gt' ],
-            p: '/src',
-            interactive: true,
-            '$0': 'rtg',
-            template: 'React with Redux'
-        }
-     */
-
-    //todo: create react app before executing below
-
+const genReduxTemplate = answer => {
     let currentPath = process.cwd();
-    answer.p = answer.p || 'src';
+    answer.path = answer.path || 'src';
     console.log(currentPath);
 
     const templateArr = [{
-        path: `${currentPath}/${answer.p}`,
+        path: `${currentPath}/${answer.name}/${answer.path}`,
         filesArr: SRC_ARR
     }, {
-        path: `${currentPath}/${answer.p}/actions`,
+        path: `${currentPath}/${answer.name}/${answer.path}/actions`,
         filesArr: ACTION_ARR
     }, {
-        path: `${currentPath}/${answer.p}/reducers`,
+        path: `${currentPath}/${answer.name}/${answer.path}/reducers`,
         filesArr: REDUCER_ARR
     }]
 
@@ -78,9 +59,25 @@ const createReduxTemplate = answer => {
         console.log("Created files successfully");
     }, error => {
         console.error(error, `unable to create React with Redux template`);
-    }) //!commented for now
-
-
+    })
+}
+const createReduxTemplate = answer => {
+    /**
+       answer: {
+              name:"myFirstApp"
+              path: 'src',
+              template: 'React with Redux'
+          }
+    */
+    console.log(answer, 'redux');
+    run(`npx create-react-app ${answer.name}`, (err, stdOut, stdErr) => {
+        if (err) {
+            console.error(err, 'error');
+            return;
+        }
+        // console.log(stdOut);
+        genReduxTemplate(answer)
+    })
 }
 
 module.exports = createReduxTemplate;
