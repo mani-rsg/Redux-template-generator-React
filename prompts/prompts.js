@@ -21,7 +21,6 @@ const promptQn1 = async () => {
     }
     try {
         answer = await prompts.interactive(options);
-        // generateComponent(answer);
         generateTemplate[answer.template](answer);
     }
     catch (error) {

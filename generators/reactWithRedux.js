@@ -43,6 +43,7 @@ const createReduxTemplate = answer => {
      */
 
     let currentPath = process.cwd();
+    answer.p = answer.p || 'src';
     console.log(currentPath);
 
     const templateArr = [{

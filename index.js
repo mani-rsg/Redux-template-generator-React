@@ -9,13 +9,8 @@ yargs.command({
     builder: {
         p: {
             describe: "Path where the template should to be created",
-            demandOption: true,
-            type: "string"
-        },
-        c: {
-            describe: `Create a class component`,
             demandOption: false,
-            type: "boolean"
+            type: "string"
         }
     },
     handler: promptQn1
