@@ -31,7 +31,9 @@
   },
   "homepage": "https://github.com/mani-rsg/Redux-template-generator-React#readme",
   "dependencies": {
+    "chalk": "^4.1.1",
     "commander": "^8.0.0",
-    "inquirer": "^8.1.1"
+    "inquirer": "^8.1.1",
+    "ora": "^5.4.1"
   }
 }
