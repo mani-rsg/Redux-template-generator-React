@@ -3,12 +3,12 @@ const fsPromises = require('fs/promises');
 const ora = require('ora');
 const chalk = require('chalk');
 const { SRC_ARR, ACTION_ARR, REDUCER_ARR } = require('./templates/reduxTemplates');
-const { run } = require('./utils/helper');
+const { createApp } = require('./utils/helper');
 
 const createTemplate = (path, filesArr, spinnerText) => {
     return new Promise((resolve, reject) => {
-        let spinner = ora({text: `Creating ${spinnerText}`, spinner: "line"}).start();
-        
+        let spinner = ora({ text: `Creating ${spinnerText}`, spinner: "line" }).start();
+
         fs.mkdir(path, { recursive: true }, error => {
             if (error) {
                 console.error(error, `unable to create ${path}`);
@@ -16,14 +16,12 @@ const createTemplate = (path, filesArr, spinnerText) => {
                 //todo: resolve / reject
                 return;
             }
-            // console.info(`${path} created`);
             spinner.succeed(chalk.greenBright(`${spinnerText} Created`));
 
             let writeArr = [];
             filesArr.forEach(file => {
                 let spinner = ora({ text: `Creating ${file.name}`, spinner: "line" }).start();
                 writeArr.push(fsPromises.writeFile(`${path}/${file.name}`, file.template).then(() => {
-                    // console.info(`${file.name} created successfully`);
                     spinner.succeed(chalk.greenBright(`${spinnerText}/${file.name} Created`));
                 }, error => {
                     spinner.fail(chalk.redBright(`Error creating ${spinnerText}/${file.name}`));
@@ -86,19 +84,10 @@ const createReduxTemplate = answer => {
           }
     */
     // console.log(answer, 'redux');
-    let spinner = ora({ text: 'Creating react app...', spinner: "moon" }).start();
-    // console.log(spinner)
-    run(`npx create-react-app ${answer.name}`, (err, stdOut, stdErr) => {
-        if (err) {
-            spinner.fail(chalk.red.bold('Error Creating React App'))
-            console.error(err, 'error');
-            return;
-        }
 
-        spinner.succeed(chalk.greenBright('React App Created'));
-
-        genReduxTemplate(answer)
-    })
+    createApp(answer.name, success => {
+        if (success) genReduxTemplate(answer);
+    });
 }
 
 module.exports = createReduxTemplate;
