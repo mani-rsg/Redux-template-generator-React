@@ -1,7 +1,7 @@
 {
-  "name": "react-generator",
+  "name": "react-project-generator",
   "version": "1.0.0",
-  "description": "A Redux template generator for React",
+  "description": "A template generator for React",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,9 +12,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mani-rsg/Redux-template-generator-React"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
   },
   "keywords": [
     "redux",
@@ -31,7 +28,8 @@
     "react-typescript",
     "fs",
     "spawn",
-    "child-process"
+    "child-process",
+    "react-project-generator"
   ],
   "author": "Manigandan Ravi",
   "license": "ISC",
