@@ -79,7 +79,6 @@ const createReduxTemplate = answer => {
     /**
        answer: {
               name:"myFirstApp"
-              path: 'src',
               template: 'React with Redux'
           }
     */

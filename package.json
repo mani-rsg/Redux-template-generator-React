@@ -1,5 +1,5 @@
 {
-  "name": "redux-template-generator-react",
+  "name": "react-generator",
   "version": "1.0.0",
   "description": "A Redux template generator for React",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "rtg": "index.js"
+    "rg": "index.js"
   },
   "repository": {
     "type": "git",
@@ -20,9 +20,15 @@
     "component-generator",
     "generator",
     "react-redux",
-    "redus-generator",
+    "redux-generator",
+    "react-generator",
     "nodejs",
-    "cli"
+    "cli",
+    "typescript",
+    "react-typescript",
+    "fs",
+    "spawn",
+    "child-process"
   ],
   "author": "Manigandan Ravi",
   "license": "ISC",
