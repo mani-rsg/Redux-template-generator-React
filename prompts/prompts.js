@@ -8,14 +8,14 @@ const createReduxTemplate = require("../generators/reactWithRedux");
 const generateTemplate = {
     "React app": createReactApp,
     "React with Redux": createReduxTemplate,
-    "React Redux with Typescript": createTypescriptTemplate
+    "React with Typescript": createTypescriptTemplate
 }
 const promptQn1 = async (args) => {
     let questions = [{
         type: 'list',
         name: 'template',
         message: 'Choose any of the templates below',
-        choices: ["React app", "React with Redux", "React Redux with Typescript"],
+        choices: ["React app", "React with Redux", "React with Typescript"],
         default: 1
     }]
     try {

@@ -2,7 +2,8 @@ const { spawn } = require('child_process');
 const ora = require('ora');
 const chalk = require('chalk');
 module.exports = {
-    createApp: (appName, callback) => {
+    createApp: (appName, callback, isTypeScript) => {
+        const isWindows = process.platform ==="win32";
         let spinner = ora({
             text: '', spinner: {
                 "interval": 80,
@@ -15,8 +16,14 @@ module.exports = {
             }
         }).start();
 
-        const child = spawn('npx', ['create-react-app', `${appName}`]);
+        const initialShellCmd = isWindows?"npx.cmd":"npx";
 
+        let child = spawn(initialShellCmd, ['create-react-app', `${appName}`]);
+
+        if(isTypeScript){
+            child = spawn(initialShellCmd, ['create-react-app', `${appName}`, '--template','typescript'] );
+        }
+        
         child.stdout.on('data', data => {
             console.log(chalk.cyanBright.bold(`${data}`));
         })
