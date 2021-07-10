@@ -2,7 +2,7 @@
 const { program } = require('commander')
 const { promptQn1 } = require('./prompts/prompts');
 
-program.version("1.0.0")
+program.version("1.0.1")
 
 program
     .command('g')
