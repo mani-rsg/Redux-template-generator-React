@@ -9,7 +9,7 @@ A light weight CLI for generating a React/React-Redux project.
 # Installation
 
 ```sh-session
-$ npm install -g react-generator
+$ npm install -g react-project-generator
 $ rg --version
 1.0.0
 ```
@@ -32,5 +32,6 @@ React with Typescript
 ```
 This will create the project with the name of my-first-app with the template you have choosen. 
 
-  
+# Snapshot
+![react-project-generator cli image](./screenshots/rg.jpg)
 
